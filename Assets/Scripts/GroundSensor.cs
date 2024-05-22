@@ -8,16 +8,26 @@ public class GroundSensor : MonoBehaviour
 
     GameManager gameManager;
 
+    public Animator anim;
+
     void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        //anim = GetComponentInParent<Mario>();
+        anim.GetComponent<Animator>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        /*if(other.GameObject.tag == "Player")
+        {
+            anim.SetBool("IsJumping", true);
+        }*/
+
         if(other.gameObject.layer == 3)
         {
             isGrounded = true;
+            //anim.SetBool("IsJumping", false);
         }
         else if(other.gameObject.layer == 6)
         {
@@ -25,9 +35,7 @@ public class GroundSensor : MonoBehaviour
             
             Enemy goomba = other.gameObject.GetComponent<Enemy>();
             goomba.Die();
-
         }
-
 
         if(other.gameObject.tag == "DeadZone")
         {
