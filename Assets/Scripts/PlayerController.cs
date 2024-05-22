@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     float horizontal;
 
     public Animator anim;
+    public GameObject bulletPrefab;
+    public Transform bulletSpawn;
 
     GameManager gameManager;
 
@@ -66,8 +68,13 @@ public class PlayerController : MonoBehaviour
                 anim.SetBool("IsJumping", true);
             }
         }    
-        
+        if(Input.GetButtonDown("Fire1"))
+            {
+            Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+            }
     }
+
+        
 
     void FixedUpdate()
     {
